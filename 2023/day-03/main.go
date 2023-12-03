@@ -2,7 +2,9 @@ package main
 
 import (
 	_ "embed"
+	"flag"
 	"fmt"
+	"snapsnapturtle/advent-of-code/util"
 	"strconv"
 	"strings"
 	"unicode"
@@ -19,80 +21,54 @@ func init() {
 	}
 }
 
-func getAdjacentFieldsForLine(lineIndex int, columnIndex int) [][2]int {
-	var adjacentFields [][2]int
+func main() {
+	var part int
+	flag.IntVar(&part, "part", 1, "part 1 or 2")
+	flag.Parse()
+	fmt.Println("Running Part: ", part)
 
-	// top left
-	adjacentFields = append(adjacentFields, [2]int{lineIndex - 1, columnIndex - 1})
-
-	// top center
-	adjacentFields = append(adjacentFields, [2]int{lineIndex - 1, columnIndex})
-
-	// top right
-	adjacentFields = append(adjacentFields, [2]int{lineIndex - 1, columnIndex + 1})
-
-	// center left
-	adjacentFields = append(adjacentFields, [2]int{lineIndex, columnIndex - 1})
-
-	// center right
-	adjacentFields = append(adjacentFields, [2]int{lineIndex, columnIndex + 1})
-
-	// bottom left
-	adjacentFields = append(adjacentFields, [2]int{lineIndex + 1, columnIndex - 1})
-
-	// bottom center
-	adjacentFields = append(adjacentFields, [2]int{lineIndex + 1, columnIndex})
-
-	// bottom right
-	adjacentFields = append(adjacentFields, [2]int{lineIndex + 1, columnIndex + 1})
-
-	return adjacentFields
+	if part != 1 {
+		ans := partOne(input)
+		fmt.Println("Output: ", ans)
+	} else {
+		ans := partTwo(input)
+		fmt.Println("Output:", ans)
+	}
 }
 
 func readFullNumber(line string, colIndex int) string {
 	var fullNumber string
+	var fullArray []string
 	var startIndex = colIndex
 
 	for startIndex > 0 && unicode.IsDigit(rune(line[startIndex-1])) {
 		startIndex--
+		fullArray = append([]string{string(line[startIndex])}, fullArray...)
 	}
+
+	startIndex = colIndex
 
 	for startIndex < len(line) && unicode.IsDigit(rune(line[startIndex])) {
 		fullNumber += string(line[startIndex])
+		fullArray = append(fullArray, string(line[startIndex]))
 		startIndex++
 	}
 
-	return fullNumber
+	return strings.Join(fullArray, "")
 }
 
-func isPartOfSchematic(lines []string, lineIndex int, colIndex int) bool {
-	if lineIndex < 0 || lineIndex >= len(lines) {
-		return false
-	}
-
-	if colIndex < 0 || colIndex >= len(lines[lineIndex]) {
-		return false
-	}
-
-	return true
-}
-
-func main() {
-	partTwo()
-}
-
-func partOne() {
+func partOne(input string) int {
 	lines := strings.Split(input, "\n")
 	totalPartNumbers := 0
 
 	for lineIndex, line := range lines {
 		for charIndex, char := range line {
 			if char != '.' && !unicode.IsDigit(char) {
-				adjacentFields := getAdjacentFieldsForLine(lineIndex, charIndex)
+				adjacentFields := util.GetAdjacentFieldsForLine(lineIndex, charIndex)
 				processedNumbers := make(map[string]bool)
 
 				for _, adjacentField := range adjacentFields {
-					if !isPartOfSchematic(lines, adjacentField[0], adjacentField[1]) {
+					if !util.IsPartOfGrid(lines, adjacentField[0], adjacentField[1]) {
 						continue
 					}
 
@@ -114,21 +90,21 @@ func partOne() {
 		}
 	}
 
-	fmt.Println("Total part numbers:", totalPartNumbers)
+	return totalPartNumbers
 }
 
-func partTwo() {
+func partTwo(input string) int {
 	lines := strings.Split(input, "\n")
 	totalGearRatios := 0
 
 	for lineIndex, line := range lines {
 		for charIndex, char := range line {
 			if char == '*' {
-				adjacentFields := getAdjacentFieldsForLine(lineIndex, charIndex)
+				adjacentFields := util.GetAdjacentFieldsForLine(lineIndex, charIndex)
 				processedNumbers := make(map[string]bool)
 
 				for _, adjacentField := range adjacentFields {
-					if !isPartOfSchematic(lines, adjacentField[0], adjacentField[1]) {
+					if !util.IsPartOfGrid(lines, adjacentField[0], adjacentField[1]) {
 						continue
 					}
 
@@ -160,5 +136,5 @@ func partTwo() {
 		}
 	}
 
-	fmt.Println("Total part numbers:", totalGearRatios)
+	return totalGearRatios
 }
