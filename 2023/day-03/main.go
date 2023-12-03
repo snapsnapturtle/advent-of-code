@@ -37,7 +37,6 @@ func main() {
 }
 
 func readFullNumber(line string, colIndex int) string {
-	var fullNumber string
 	var fullArray []string
 	var startIndex = colIndex
 
@@ -49,7 +48,6 @@ func readFullNumber(line string, colIndex int) string {
 	startIndex = colIndex
 
 	for startIndex < len(line) && unicode.IsDigit(rune(line[startIndex])) {
-		fullNumber += string(line[startIndex])
 		fullArray = append(fullArray, string(line[startIndex]))
 		startIndex++
 	}
