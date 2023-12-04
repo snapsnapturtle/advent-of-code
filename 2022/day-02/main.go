@@ -11,7 +11,6 @@ import (
 var input string
 
 func init() {
-	// do this in init (not main) so test file has same input
 	input = strings.TrimRight(input, "\n")
 	if len(input) == 0 {
 		panic("empty input.txt file")
