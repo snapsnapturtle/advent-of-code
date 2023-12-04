@@ -27,7 +27,7 @@ func main() {
 	flag.Parse()
 	fmt.Println("Running Part: ", part)
 
-	if part != 1 {
+	if part == 1 {
 		ans := partOne(input)
 		fmt.Println("Output: ", ans)
 	} else {
