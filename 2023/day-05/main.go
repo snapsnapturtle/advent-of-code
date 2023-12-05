@@ -138,7 +138,7 @@ func partTwo(input string) int {
 						newSeedRanges = append(newSeedRanges, [2]int{cutStart + distanceToMove, cutEnd + distanceToMove})
 
 						if seedRange[0] < cutStart {
-							seedRanges = append(seedRanges, [2]int{seedRange[0], cutStart - 1})
+							seedRanges = append(seedRanges, [2]int{seedRange[0] - 1, cutStart - 1})
 							seedRangesLength += 1
 						}
 
@@ -185,6 +185,5 @@ func partTwo(input string) int {
 
 	sort.Ints(startingPositions)
 
-	// I have no idea why this is off by 1
-	return startingPositions[0] - 1
+	return startingPositions[0]
 }
