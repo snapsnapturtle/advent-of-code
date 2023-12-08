@@ -12,6 +12,14 @@ import (
 //go:embed input.txt
 var input string
 
+func init() {
+	// do this in init (not main) so test file has same input
+	input = strings.TrimRight(input, "\n")
+	if len(input) == 0 {
+		panic("empty input.txt file")
+	}
+}
+
 func main() {
 	var part int
 	flag.IntVar(&part, "part", 1, "part 1 or 2")
@@ -113,10 +121,6 @@ func partTwo(input string) int {
 	waypoints := make(map[string]Instruction, len(lines)-2)
 
 	for _, line := range lines[2:] {
-		if len(line) == 0 {
-			continue
-		}
-
 		navigationRegex := regexp.MustCompile(`(\w{3})`)
 		matches := navigationRegex.FindAllString(line, -1)
 
