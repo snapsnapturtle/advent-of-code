@@ -58,9 +58,8 @@ func buildHistoryFromInput(line string) [][]int {
 	}
 
 	differenceRows := [][]int{initialNumbers}
-	hasFoundZero := false
 
-	for !hasFoundZero {
+	for !isEverythingZero(differenceRows[len(differenceRows)-1]) {
 		latestRow := differenceRows[len(differenceRows)-1]
 		currentDifferences := make([]int, 0)
 
@@ -72,10 +71,6 @@ func buildHistoryFromInput(line string) [][]int {
 		}
 
 		differenceRows = append(differenceRows, currentDifferences)
-
-		if isEverythingZero(differenceRows[len(differenceRows)-1]) {
-			hasFoundZero = true
-		}
 	}
 
 	return differenceRows
@@ -84,28 +79,17 @@ func buildHistoryFromInput(line string) [][]int {
 func partOne(input string) int {
 	lines := strings.Split(input, "\n")
 
-	extrapolatedNumbers := make([]int, 0)
+	extrapolatedNumber := 0
 
 	for _, line := range lines {
 		differenceRows := buildHistoryFromInput(line)
 
-		for i := len(differenceRows) - 1; i > 0; i-- {
-			if i == len(differenceRows)-1 {
-				differenceRows[i] = append(differenceRows[i], 0)
-			}
-
-			previousRow := differenceRows[i]
-			rowToCalculate := differenceRows[i-1]
-
-			nextValue := previousRow[len(rowToCalculate)-1] + rowToCalculate[len(rowToCalculate)-1]
-
-			differenceRows[i-1] = append(rowToCalculate, nextValue)
+		for _, row := range differenceRows {
+			extrapolatedNumber += row[len(row)-1]
 		}
-
-		extrapolatedNumbers = append(extrapolatedNumbers, differenceRows[0][len(differenceRows[0])-1])
 	}
 
-	return util.SumOfSlice(extrapolatedNumbers)
+	return extrapolatedNumber
 }
 
 func partTwo(input string) int {
