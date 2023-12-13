@@ -2,28 +2,30 @@ package main
 
 import (
 	_ "embed"
-	"flag"
 	"fmt"
 	"snapsnapturtle/advent-of-code/util"
 	"strings"
+	"time"
 )
 
 //go:embed input.txt
 var input string
 
-func main() {
-	var part int
-	flag.IntVar(&part, "part", 1, "part 1 or 2")
-	flag.Parse()
-	fmt.Println("Running Part:", part)
-
-	if part == 1 {
-		ans := partOne(input)
-		fmt.Println("Output:", ans)
-	} else {
-		ans := partTwo(input)
-		fmt.Println("Output:", ans)
+func init() {
+	// do this in init (not main) so test file has same input
+	input = strings.TrimRight(input, "\n")
+	if len(input) == 0 {
+		panic("empty input.txt file")
 	}
+}
+
+func main() {
+	timeStart := time.Now()
+
+	fmt.Println("--- Day 6: Wait For It ---")
+	fmt.Println("Part 1:", partOne(input))
+	fmt.Println("Part 2:", partTwo(input))
+	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
 }
 
 func partOne(input string) int {
@@ -34,13 +36,13 @@ func partOne(input string) int {
 	attempts := make([]int, 0)
 
 	for raceIndex := 0; raceIndex < len(timeStrings); raceIndex++ {
-		time := timeStrings[raceIndex]
+		ranceTime := timeStrings[raceIndex]
 		distanceToBeat := distanceStrings[raceIndex]
 
 		validAttempts := 0
 
-		for timePressed := 0; timePressed <= time; timePressed++ {
-			distance := timePressed * (time - timePressed)
+		for timePressed := 0; timePressed <= ranceTime; timePressed++ {
+			distance := timePressed * (ranceTime - timePressed)
 
 			if distance > distanceToBeat {
 				validAttempts++

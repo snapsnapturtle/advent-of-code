@@ -3,11 +3,11 @@ package main
 import (
 	_ "embed"
 	"errors"
-	"flag"
 	"fmt"
 	"slices"
 	"snapsnapturtle/advent-of-code/util"
 	"strings"
+	"time"
 )
 
 //go:embed input.txt
@@ -22,18 +22,12 @@ func init() {
 }
 
 func main() {
-	var part int
-	flag.IntVar(&part, "part", 1, "part 1 or 2")
-	flag.Parse()
-	fmt.Println("Running Part:", part)
+	timeStart := time.Now()
 
-	if part == 1 {
-		ans := partOne(input)
-		fmt.Println("Output:", ans)
-	} else {
-		ans := partTwo(input)
-		fmt.Println("Output:", ans)
-	}
+	fmt.Println("--- Day 10: Pipe Maze ---")
+	fmt.Println("Part 1:", partOne(input))
+	fmt.Println("Part 2:", partTwo(input))
+	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
 }
 
 const (
@@ -225,7 +219,5 @@ func drawLoop(markers [][2]int, columns int, rows int) {
 				line += "."
 			}
 		}
-
-		fmt.Println(line)
 	}
 }

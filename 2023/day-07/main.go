@@ -2,29 +2,31 @@ package main
 
 import (
 	_ "embed"
-	"flag"
 	"fmt"
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 //go:embed input.txt
 var input string
 
-func main() {
-	var part int
-	flag.IntVar(&part, "part", 1, "part 1 or 2")
-	flag.Parse()
-	fmt.Println("Running Part:", part)
-
-	if part == 1 {
-		ans := partOne(input)
-		fmt.Println("Output:", ans)
-	} else {
-		ans := partTwo(input)
-		fmt.Println("Output:", ans)
+func init() {
+	// do this in init (not main) so test file has same input
+	input = strings.TrimRight(input, "\n")
+	if len(input) == 0 {
+		panic("empty input.txt file")
 	}
+}
+
+func main() {
+	timeStart := time.Now()
+
+	fmt.Println("--- Day 7: Camel Cards ---")
+	fmt.Println("Part 1:", partOne(input))
+	fmt.Println("Part 2:", partTwo(input))
+	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
 }
 
 type ScoredCard struct {
