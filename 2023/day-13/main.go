@@ -39,7 +39,7 @@ func partOne(input string) int {
 			continue
 		}
 
-		if reflectionCols := findReflectionPoint(pivotRows(rows), 0); reflectionCols >= 0 {
+		if reflectionCols := findReflectionPoint(transpose(rows), 0); reflectionCols >= 0 {
 			totalNumber += reflectionCols
 			continue
 		}
@@ -60,7 +60,7 @@ func partTwo(input string) int {
 			continue
 		}
 
-		if reflectionCols := findReflectionPoint(pivotRows(rows), 1); reflectionCols >= 0 {
+		if reflectionCols := findReflectionPoint(transpose(rows), 1); reflectionCols >= 0 {
 			totalNumber += reflectionCols
 			continue
 		}
@@ -69,7 +69,7 @@ func partTwo(input string) int {
 	return totalNumber
 }
 
-func pivotRows(rows []string) []string {
+func transpose(rows []string) []string {
 	output := make([]string, len(rows[0]))
 
 	for i := 0; i < len(rows[0]); i++ {
