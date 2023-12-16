@@ -153,7 +153,7 @@ func findLoop(lines []string) [][2]int {
 			nextPosition = [2]int{startingPosition[0], startingPosition[1] + 1}
 		}
 
-		if !util.IsPartOfGrid(lines, nextPosition[0], nextPosition[1]) {
+		if !util.IsPartOfLines(lines, nextPosition[0], nextPosition[1]) {
 			continue
 		}
 

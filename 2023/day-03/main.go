@@ -60,7 +60,7 @@ func partOne(input string) int {
 				processedNumbers := make(map[string]bool)
 
 				for _, adjacentField := range adjacentFields {
-					if !util.IsPartOfGrid(lines, adjacentField[0], adjacentField[1]) {
+					if !util.IsPartOfLines(lines, adjacentField[0], adjacentField[1]) {
 						continue
 					}
 
@@ -96,7 +96,7 @@ func partTwo(input string) int {
 				processedNumbers := make(map[string]bool)
 
 				for _, adjacentField := range adjacentFields {
-					if !util.IsPartOfGrid(lines, adjacentField[0], adjacentField[1]) {
+					if !util.IsPartOfLines(lines, adjacentField[0], adjacentField[1]) {
 						continue
 					}
 
