@@ -2,7 +2,7 @@ package util
 
 import "strings"
 
-func MakeGridFromInput(input string) [][]string {
+func MakeStringGridFromInput(input string) [][]string {
 	var grid [][]string
 
 	lines := strings.Split(input, "\n")

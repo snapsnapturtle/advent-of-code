@@ -29,7 +29,7 @@ func main() {
 }
 
 func partOne(input string) int {
-	initialBoard := util.MakeGridFromInput(input)
+	initialBoard := util.MakeStringGridFromInput(input)
 	tiltedBoard := moveRocks(initialBoard, -1, 0)
 
 	return calculateWeightForNorthBeam(tiltedBoard)
@@ -41,7 +41,7 @@ type CycleAndBoard struct {
 }
 
 func partTwo(input string) int {
-	board := util.MakeGridFromInput(input)
+	board := util.MakeStringGridFromInput(input)
 	memory := make(map[string]CycleAndBoard)
 
 	cycles := 0

@@ -29,7 +29,7 @@ func main() {
 }
 
 func partOne(input string) int {
-	grid := util.MakeGridFromInput(input)
+	grid := util.MakeStringGridFromInput(input)
 	firstStep := NextStep{
 		Position:  [2]int{0, -1},
 		Direction: [2]int{0, 1},
@@ -40,7 +40,7 @@ func partOne(input string) int {
 }
 
 func partTwo(input string) int {
-	grid := util.MakeGridFromInput(input)
+	grid := util.MakeStringGridFromInput(input)
 
 	var firstSteps []NextStep
 
