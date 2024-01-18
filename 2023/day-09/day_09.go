@@ -1,34 +1,11 @@
-package main
+package day_09
 
 import (
 	_ "embed"
-	"fmt"
 	"regexp"
 	"snapsnapturtle/advent-of-code/util"
 	"strconv"
-	"strings"
-	"time"
 )
-
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 9: Mirage Maintenance ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
 
 func isEverythingZero(slice []int) bool {
 	for _, number := range slice {
@@ -70,8 +47,8 @@ func buildHistoryFromInput(line string) [][]int {
 	return differenceRows
 }
 
-func partOne(input string) int {
-	lines := strings.Split(input, "\n")
+func PartOne(input string) int {
+	lines := util.ParseLinesFromInput(input)
 
 	extrapolatedNumber := 0
 
@@ -86,8 +63,8 @@ func partOne(input string) int {
 	return extrapolatedNumber
 }
 
-func partTwo(input string) int {
-	lines := strings.Split(input, "\n")
+func PartTwo(input string) int {
+	lines := util.ParseLinesFromInput(input)
 
 	extrapolatedNumbers := make([]int, 0)
 
