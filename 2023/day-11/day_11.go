@@ -1,42 +1,20 @@
-package main
+package day_11
 
 import (
 	_ "embed"
-	"fmt"
 	"math"
 	"regexp"
-	"strings"
-	"time"
+	"snapsnapturtle/advent-of-code/util"
 )
 
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 11: Cosmic Expansion ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-func partOne(input string) int {
-	universe := strings.Split(input, "\n")
+func PartOne(input string) int {
+	universe := util.ParseLinesFromInput(input)
 
 	return calculateShortestDistances(universe, 2)
 }
 
-func partTwo(input string) int {
-	universe := strings.Split(input, "\n")
+func PartTwo(input string) int {
+	universe := util.ParseLinesFromInput(input)
 
 	return calculateShortestDistances(universe, 1_000_000)
 }
