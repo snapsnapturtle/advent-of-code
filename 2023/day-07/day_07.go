@@ -1,33 +1,12 @@
-package main
+package day_07
 
 import (
 	_ "embed"
-	"fmt"
+	"snapsnapturtle/advent-of-code/util"
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 )
-
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 7: Camel Cards ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
 
 type ScoredCard struct {
 	Cards []string
@@ -91,8 +70,8 @@ func sortScoredCards(scores []ScoredCard, cardValues map[string]int) []ScoredCar
 	return scores
 }
 
-func partOne(input string) int {
-	lines := strings.Split(input, "\n")
+func PartOne(input string) int {
+	lines := util.ParseLinesFromInput(input)
 
 	cardValues := map[string]int{
 		"2": 2,
@@ -140,8 +119,8 @@ func partOne(input string) int {
 	return totalScore
 }
 
-func partTwo(input string) int {
-	lines := strings.Split(input, "\n")
+func PartTwo(input string) int {
+	lines := util.ParseLinesFromInput(input)
 
 	cardValues := map[string]int{
 		"J": 1,
