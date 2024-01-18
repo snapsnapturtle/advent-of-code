@@ -1,34 +1,12 @@
-package main
+package day_03
 
 import (
 	_ "embed"
-	"fmt"
 	"snapsnapturtle/advent-of-code/util"
 	"strconv"
 	"strings"
-	"time"
 	"unicode"
 )
-
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 3: Gear Ratios ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
 
 func readFullNumber(line string, colIndex int) string {
 	var fullArray []string
@@ -49,7 +27,7 @@ func readFullNumber(line string, colIndex int) string {
 	return strings.Join(fullArray, "")
 }
 
-func partOne(input string) int {
+func PartOne(input string) int {
 	lines := strings.Split(input, "\n")
 	totalPartNumbers := 0
 
@@ -85,7 +63,7 @@ func partOne(input string) int {
 	return totalPartNumbers
 }
 
-func partTwo(input string) int {
+func PartTwo(input string) int {
 	lines := strings.Split(input, "\n")
 	totalGearRatios := 0
 
