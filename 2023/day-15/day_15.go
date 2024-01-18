@@ -1,4 +1,4 @@
-package main
+package day_15
 
 import (
 	_ "embed"
@@ -7,31 +7,10 @@ import (
 	"slices"
 	"strconv"
 	"strings"
-	"time"
 )
 
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 15: Lens Library ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-func partOne(input string) int {
-	words := strings.Split(input, ",")
+func PartOne(input string) int {
+	words := strings.Split(strings.TrimRight(input, "\n"), ",")
 	total := 0
 
 	for _, word := range words {
@@ -46,8 +25,9 @@ type Lens struct {
 	FocalLength int
 }
 
-func partTwo(input string) int {
-	commands := strings.Split(input, ",")
+func PartTwo(input string) int {
+	commands := strings.Split(strings.TrimRight(input, "\n"), ",")
+	fmt.Println(len(commands))
 	boxes := make(map[int][]Lens, 256)
 
 	for _, word := range commands {
