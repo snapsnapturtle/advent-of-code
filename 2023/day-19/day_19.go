@@ -2,7 +2,6 @@ package day_19
 
 import (
 	_ "embed"
-	"fmt"
 	"regexp"
 	"snapsnapturtle/advent-of-code/util"
 	"strconv"
@@ -116,8 +115,6 @@ func isPartAccepted(part Part, workflows map[string][]WorkflowStep) bool {
 			workflowStepId++
 		}
 	}
-
-	fmt.Println("returning final step", currentWorkflowId)
 
 	return currentWorkflowId == Accepted
 }
