@@ -1,54 +1,22 @@
-package main
+package day_01
 
 import (
-	"bufio"
-	"flag"
-	"fmt"
-	"log"
-	"os"
 	"regexp"
+	"snapsnapturtle/advent-of-code/util"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	var part int
-	flag.IntVar(&part, "part", 1, "part 1 or 2")
-	flag.Parse()
-	fmt.Println("Running: Part ", part)
-
-	file, err := os.Open("input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer file.Close()
-
-	if part == 1 {
-		answer := partOne(file)
-		fmt.Println("Output:", answer)
-	} else {
-		answer := partTwo(file)
-		fmt.Println("Output:", answer)
-	}
-}
-
-func partOne(file *os.File) int {
-	scanner := bufio.NewScanner(file)
+func PartOne(input string) int {
+	lines := util.ParseLinesFromInput(input)
 	totalSum := 0
 
-	for scanner.Scan() {
-		line := scanner.Text()
+	regex := regexp.MustCompile(`([1-9])`)
 
-		r := regexp.MustCompile(`([1-9])`)
-		matches := r.FindAllString(line, -1)
-
+	for _, line := range lines {
+		matches := regex.FindAllString(line, -1)
 		sumOfLine, _ := strconv.Atoi(matches[0] + matches[len(matches)-1])
 		totalSum += sumOfLine
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
 	}
 
 	return totalSum
@@ -84,19 +52,13 @@ func extractNumbersAndSpelledNumbers(line string) int {
 	return combinedNumber
 }
 
-func partTwo(file *os.File) int {
-	scanner := bufio.NewScanner(file)
+func PartTwo(input string) int {
+	lines := util.ParseLinesFromInput(input)
 	totalSum := 0
 
-	for scanner.Scan() {
-		line := scanner.Text()
-
+	for _, line := range lines {
 		combinedNumber := extractNumbersAndSpelledNumbers(line)
 		totalSum += combinedNumber
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
 	}
 
 	return totalSum
