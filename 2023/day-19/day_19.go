@@ -1,4 +1,4 @@
-package main
+package day_19
 
 import (
 	_ "embed"
@@ -7,28 +7,7 @@ import (
 	"snapsnapturtle/advent-of-code/util"
 	"strconv"
 	"strings"
-	"time"
 )
-
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 19: Aplenty ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
 
 const (
 	LessThan    = "<"
@@ -51,8 +30,8 @@ type Part struct {
 	S int
 }
 
-func partOne(input string) int {
-	inputs := strings.Split(input, "\n\n")
+func PartOne(input string) int {
+	inputs := strings.Split(strings.TrimRight(input, "\n"), "\n\n")
 	inputWorkflows := strings.Split(inputs[0], "\n")
 	inputParts := strings.Split(inputs[1], "\n")
 
@@ -111,6 +90,10 @@ func partOne(input string) int {
 	return sumOfAcceptedParts
 }
 
+func PartTwo(input string) int {
+	return 0
+}
+
 func (w WorkflowStep) isNextStepFinal() bool {
 	return w.NextWorkflowId == Accepted || w.NextWorkflowId == Rejected
 }
@@ -165,8 +148,4 @@ func (p Part) matchesCondition(field string, condition string, value int) bool {
 	}
 
 	panic("help")
-}
-
-func partTwo(input string) int {
-	return 0
 }
