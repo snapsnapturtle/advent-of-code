@@ -1,29 +1,15 @@
-package main
+package day_05
 
 import (
 	_ "embed"
-	"fmt"
 	"math"
 	"regexp"
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 )
 
-//go:embed input.txt
-var input string
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 5: If You Give A Seed A Fertilizer ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-func partOne(input string) int {
+func PartOne(input string) int {
 	lines := strings.Split(input, "\n")
 
 	numberRegex := regexp.MustCompile(`(?P<Number>\d+)`)
@@ -86,7 +72,7 @@ func partOne(input string) int {
 	return seeds[0]
 }
 
-func partTwo(input string) int {
+func PartTwo(input string) int {
 	lines := strings.Split(input, "\n")
 
 	numberRegex := regexp.MustCompile(`(?P<Number>\d+)`)
