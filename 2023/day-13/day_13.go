@@ -1,34 +1,12 @@
-package main
+package day_13
 
 import (
 	_ "embed"
-	"fmt"
 	"strings"
-	"time"
 )
 
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 13: Point of Incidence ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-func partOne(input string) int {
-	maps := strings.Split(input, "\n\n")
+func PartOne(input string) int {
+	maps := strings.Split(strings.TrimRight(input, "\n"), "\n\n")
 	totalNumber := 0
 
 	for _, singleMap := range maps {
@@ -48,8 +26,8 @@ func partOne(input string) int {
 	return totalNumber
 }
 
-func partTwo(input string) int {
-	maps := strings.Split(input, "\n\n")
+func PartTwo(input string) int {
+	maps := strings.Split(strings.TrimRight(input, "\n"), "\n\n")
 	totalNumber := 0
 
 	for _, singleMap := range maps {
