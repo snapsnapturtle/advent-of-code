@@ -1,11 +1,9 @@
 package util
 
-import "strings"
-
 func MakeStringGridFromInput(input string) [][]string {
 	var grid [][]string
 
-	lines := strings.Split(input, "\n")
+	lines := ParseLinesFromInput(input)
 
 	for _, line := range lines {
 		var row []string
