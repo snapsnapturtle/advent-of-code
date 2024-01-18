@@ -7,5 +7,5 @@ func ParseLinesFromInput(input string) []string {
 		return []string{}
 	}
 
-	return strings.Split(strings.Trim(input, "\n"), "\n")
+	return strings.Split(strings.TrimRight(input, "\n"), "\n")
 }
