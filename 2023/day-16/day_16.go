@@ -1,34 +1,11 @@
-package main
+package day_16
 
 import (
 	_ "embed"
-	"fmt"
 	"snapsnapturtle/advent-of-code/util"
-	"strings"
-	"time"
 )
 
-//go:embed input.txt
-var input string
-
-func init() {
-	// do this in init (not main) so test file has same input
-	input = strings.TrimRight(input, "\n")
-	if len(input) == 0 {
-		panic("empty input.txt file")
-	}
-}
-
-func main() {
-	timeStart := time.Now()
-
-	fmt.Println("--- Day 16: The Floor Will Be Lava ---")
-	fmt.Println("Part 1:", partOne(input))
-	fmt.Println("Part 2:", partTwo(input))
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-func partOne(input string) int {
+func PartOne(input string) int {
 	grid := util.MakeStringGridFromInput(input)
 	firstStep := NextStep{
 		Position:  [2]int{0, -1},
@@ -39,7 +16,7 @@ func partOne(input string) int {
 	return activeFields
 }
 
-func partTwo(input string) int {
+func PartTwo(input string) int {
 	grid := util.MakeStringGridFromInput(input)
 
 	var firstSteps []NextStep
