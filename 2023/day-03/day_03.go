@@ -28,7 +28,7 @@ func readFullNumber(line string, colIndex int) string {
 }
 
 func PartOne(input string) int {
-	lines := strings.Split(input, "\n")
+	lines := util.ParseLinesFromInput(input)
 	totalPartNumbers := 0
 
 	for lineIndex, line := range lines {
@@ -64,7 +64,7 @@ func PartOne(input string) int {
 }
 
 func PartTwo(input string) int {
-	lines := strings.Split(input, "\n")
+	lines := util.ParseLinesFromInput(input)
 	totalGearRatios := 0
 
 	for lineIndex, line := range lines {
