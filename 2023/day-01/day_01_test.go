@@ -6,7 +6,7 @@ import (
 )
 
 //go:embed input.txt
-var input string
+var actualInput string
 
 //go:embed example-part-1.txt
 var exampleInputPartOne string
@@ -24,7 +24,7 @@ func TestPartOne(t *testing.T) {
 		want int
 	}{
 		{"example", args{exampleInputPartOne}, 142},
-		{"actual", args{input}, 55538},
+		{"actual", args{actualInput}, 55538},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -45,7 +45,7 @@ func TestPartTwo(t *testing.T) {
 		want int
 	}{
 		{"example", args{exampleInputPartTwo}, 281},
-		{"actual", args{input}, 54875},
+		{"actual", args{actualInput}, 54875},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
