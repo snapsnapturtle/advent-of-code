@@ -1,7 +1,7 @@
 package day_01
 
 import (
-    "regexp"
+	"regexp"
 	"snapsnapturtle/advent-of-code/util"
 	"strconv"
 	"strings"
