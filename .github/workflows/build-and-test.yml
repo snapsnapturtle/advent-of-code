@@ -19,5 +19,8 @@ jobs:
           - name: Build project
             run: go build -v ./...
 
+          - name: Check formatting
+            run: '[ ! "$(gofmt -s -l .)" ]'
+
           - name: Test project
             run: go test -v ./...
