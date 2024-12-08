@@ -7,13 +7,6 @@ import (
 	"strconv"
 )
 
-func Abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
-
 func PartOne(input string) int {
 	lines := util.ParseLinesFromInput(input)
 	totalSum := 0
@@ -37,7 +30,7 @@ func PartOne(input string) int {
 	sort.Ints(rightNumbers)
 
 	for index := 0; index < len(leftNumbers); index++ {
-		totalSum += Abs(leftNumbers[index] - rightNumbers[index])
+		totalSum += util.Abs(leftNumbers[index] - rightNumbers[index])
 	}
 
 	return totalSum

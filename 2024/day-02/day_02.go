@@ -6,13 +6,6 @@ import (
 	"strings"
 )
 
-func Abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
-
 func PartOne(input string) int {
 	reports := util.ParseLinesFromInput(input)
 	safeReports := 0
@@ -31,7 +24,7 @@ func PartOne(input string) int {
 
 			levelValue, _ := strconv.Atoi(level)
 
-			absoluteDifference := Abs(levelValue - previousLevelValue)
+			absoluteDifference := util.Abs(levelValue - previousLevelValue)
 
 			if absoluteDifference < 1 || absoluteDifference > 3 {
 				isValidReport = false
