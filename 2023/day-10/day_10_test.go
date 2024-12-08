@@ -8,16 +8,16 @@ import (
 //go:embed input.txt
 var actualInput string
 
-//go:embed example-part-1.txt
+//go:embed example_part_1.txt
 var exampleInputPartOne string
 
-//go:embed example-part-2-1.txt
+//go:embed example_part_2_1.txt
 var exampleInputPartTwoA string
 
-//go:embed example-part-2-2.txt
+//go:embed example_part_2_2.txt
 var exampleInputPartTwoB string
 
-//go:embed example-part-2-3.txt
+//go:embed example_part_2_3.txt
 var exampleInputPartTwoC string
 
 func TestPartOne(t *testing.T) {
